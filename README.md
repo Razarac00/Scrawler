@@ -2,7 +2,7 @@
 
 *Turn numbers into large words. That's it.*
 
-## The web application is simple: 
+## The Web Application is Simple: 
 it will take in any number and produce the English word(s) for that number in excessively large text, scrolling across the page. The user will of course be allowed to submit regular English and have that scroll across the screen if they so please.
 
 ## Need This Fills: 
