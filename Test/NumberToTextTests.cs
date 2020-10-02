@@ -14,7 +14,7 @@ namespace Test
             var test = new NumberToText();
 
             // act
-            actual = test.Convert(9);
+            actual = test.Convert("9");
             var expected = "nine";
 
             // assert
@@ -29,7 +29,7 @@ namespace Test
             var test = new NumberToText();
 
             // act
-            actual = test.Convert(-1);
+            actual = test.Convert("-1");
             var expected = "negative one";
 
             // assert
