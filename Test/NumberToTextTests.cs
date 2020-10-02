@@ -1,4 +1,5 @@
 using System;
+using Domain;
 using Xunit;
 
 namespace Test
@@ -6,11 +7,34 @@ namespace Test
     public class NumberToTextTests
     {
         [Fact]
-        public void Test1()
+        public void CanHandleSingleDigit()
         {
-            Assert.Equal(4, Add(2,2));
+            // arrange
+            string actual;
+            var test = new NumberToText();
+
+            // act
+            actual = test.Convert(9);
+            var expected = "nine";
+
+            // assert
+            Assert.Equal(expected, actual);
         }
 
-        int Add(int x, int y) { return x + y; }
+        [Fact]
+        public void CanHandleNegativeDigit()
+        {
+            // arrange
+            string actual;
+            var test = new NumberToText();
+
+            // act
+            actual = test.Convert(-1);
+            var expected = "negative one";
+
+            // assert
+            Assert.Equal(expected, actual);
+        }
+
     }
 }
