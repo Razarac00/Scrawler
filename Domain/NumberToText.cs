@@ -38,6 +38,8 @@ namespace Domain
         public string Convert(string num)
         {
             string result = "";
+            num = num.Replace(",", "");
+
             if (num.StartsWith("+"))
             {
                 result += "positive ";
@@ -54,6 +56,35 @@ namespace Domain
                 result += numberMatrix[0][Int32.Parse(num)];
             }
 
+            return result;
+        }
+
+        private string GroupOfThreeHandler(string num)
+        {
+            string result = "";
+            var arr = num.ToCharArray();
+
+            for (int i = 0; i < arr.Length; i++)
+            {
+                switch (i)
+                {
+                    case 0:
+                        result = numberMatrix[0][Int32.Parse(num)] + " " + numberMatrix[2][0];
+                        break;
+                    case 1:
+                        int val = Int32.Parse(num) - 2; // twenty--2--is at position 0
+                        if (val >= 0) 
+                        {
+                            result += " " + numberMatrix[1][val];
+                        }
+                        break;
+                    case 2:
+                        result += " " + numberMatrix[0][Int32.Parse(num)];
+                        break;
+                    default:
+                        break;
+                }
+            }
             return result;
         }
 
