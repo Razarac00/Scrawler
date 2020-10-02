@@ -1,11 +1,11 @@
 {
-  "name": "scrawler",
+  "name": "app",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "build:ssr": "ng run Scrawler:server:dev",
+    "build:ssr": "ng run App:server:dev",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

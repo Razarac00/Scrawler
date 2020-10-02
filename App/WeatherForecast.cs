@@ -1,6 +1,6 @@
 using System;
 
-namespace Scrawler
+namespace App
 {
     public class WeatherForecast
     {
