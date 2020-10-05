@@ -202,7 +202,7 @@ namespace Test
         }
 
         [Fact]
-        public void CanHandleEVENTrillions()
+        public void CanHandleEvenTrillions()
         {
             // arrange
             string actual;
@@ -211,6 +211,21 @@ namespace Test
             // act
             actual = test.Convert("1,000,000,000,000");
             var expected = "one trillion";
+
+            // assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void CanHandleComplexTrillions()
+        {
+            // arrange
+            string actual;
+            var test = new NumberToText();
+
+            // act
+            actual = test.Convert("11,000,421,700,010");
+            var expected = "eleven trillion four hundred twenty one million seven hundred thousand ten";
 
             // assert
             Assert.Equal(expected, actual);
