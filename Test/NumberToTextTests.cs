@@ -37,6 +37,21 @@ namespace Test
         }
 
         [Fact]
+        public void CanHandleQuestionableZero()
+        {
+            // arrange
+            string actual;
+            var test = new NumberToText();
+
+            // act
+            actual = test.Convert("+0");
+            var expected = "positive zero";
+
+            // assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
         public void CanHandleSpecialDoubleDigits()
         {
             // arrange
