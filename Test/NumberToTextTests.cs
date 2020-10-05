@@ -36,5 +36,35 @@ namespace Test
             Assert.Equal(expected, actual);
         }
 
+        [Fact]
+        public void CanHandleSpecialDoubleDigits()
+        {
+            // arrange
+            string actual;
+            var test = new NumberToText();
+
+            // act
+            actual = test.Convert("14");
+            var expected = "fourteen";
+
+            // assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void CanHandleDoubleDigits()
+        {
+            // arrange
+            string actual;
+            var test = new NumberToText();
+
+            // act
+            actual = test.Convert("42");
+            var expected = "forty two";
+
+            // assert
+            Assert.Equal(expected, actual);
+        }
+
     }
 }
