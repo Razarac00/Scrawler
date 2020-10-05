@@ -66,5 +66,20 @@ namespace Test
             Assert.Equal(expected, actual);
         }
 
+        [Fact]
+        public void CanHandleTripleDigits()
+        {
+            // arrange
+            string actual;
+            var test = new NumberToText();
+
+            // act
+            actual = test.Convert("343");
+            var expected = "three hundred forty three";
+
+            // assert
+            Assert.Equal(expected, actual);
+        }
+
     }
 }

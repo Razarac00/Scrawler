@@ -86,6 +86,10 @@ namespace Domain
                         if (val == 1)
                         {
                             // teens
+                            if (result.Contains("hundred"))
+                            {
+                                result += " ";
+                            }
                             val = Int32.Parse(arr[i - 1].ToString());
                             result += numberMatrix[1][val];
                             return result;
@@ -95,6 +99,10 @@ namespace Domain
                             val = val - 2; // twenty--2--is at position 0
                             if (val >= 0) 
                             {
+                                if (result.Contains("hundred"))
+                                {
+                                    result += " ";
+                                }
                                 result += numberMatrix[2][val];
                             }
                         }
@@ -108,6 +116,7 @@ namespace Domain
                         break;
 
                     default:
+                        result += " how did you even get here haha ";
                         break;
 
                 }
