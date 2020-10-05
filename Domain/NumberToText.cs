@@ -32,7 +32,7 @@ namespace Domain
  
         private string[] tens_power = new string[] 
         {
-            "hundred", "thousand", "million", "billion"
+            "hundred", "thousand", "million", "billion", "trillion"
         };
 
         public string Convert(string num)
@@ -67,14 +67,19 @@ namespace Domain
 
                 for (int i = 0; i < splits.Length; i++)
                 {
+                    string nextSet = GroupOfThreeHandler(splits[i]).Trim();
                     if (power > 0)
                     {
-                        result += GroupOfThreeHandler(splits[i]) + " " + numberMatrix[3][power] + " ";
+
+                        if (nextSet != "")
+                        {
+                            result += nextSet + " " + numberMatrix[3][power] + " ";
+                        }
                         power--;
                     }
                     else
                     {
-                        result = result.Trim() + " " + GroupOfThreeHandler(splits[i]).Trim();
+                        result = result.Trim() + " " + nextSet;
                     }
 
                 }

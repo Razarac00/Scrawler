@@ -201,5 +201,20 @@ namespace Test
             Assert.Equal(expected, actual);
         }
 
+        [Fact]
+        public void CanHandleEVENTrillions()
+        {
+            // arrange
+            string actual;
+            var test = new NumberToText();
+
+            // act
+            actual = test.Convert("1,000,000,000,000");
+            var expected = "one trillion";
+
+            // assert
+            Assert.Equal(expected, actual);
+        }
+
     }
 }
