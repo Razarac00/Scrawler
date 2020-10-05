@@ -81,5 +81,35 @@ namespace Test
             Assert.Equal(expected, actual);
         }
 
+        [Fact]
+        public void CanHandleNegativeTripleDigits()
+        {
+            // arrange
+            string actual;
+            var test = new NumberToText();
+
+            // act
+            actual = test.Convert("-717");
+            var expected = "negative seven hundred seventeen";
+
+            // assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void CanHandleZeroesTripleDigits()
+        {
+            // arrange
+            string actual;
+            var test = new NumberToText();
+
+            // act
+            actual = test.Convert("600");
+            var expected = "six hundred";
+
+            // assert
+            Assert.Equal(expected, actual);
+        }
+
     }
 }

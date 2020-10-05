@@ -78,8 +78,8 @@ namespace Domain
                         if (val != 0)
                         {
                             result += " ";
+                            result += numberMatrix[0][val];
                         }
-                        result += numberMatrix[0][val];
                         break;
 
                     case 1: // --ty's or --teen's
@@ -116,7 +116,7 @@ namespace Domain
                         break;
 
                     default:
-                        result += " how did you even get here haha ";
+                        result += " you shouldn't be here ";
                         break;
 
                 }
