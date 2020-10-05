@@ -54,6 +54,9 @@ namespace Domain
             if (num.Length == 1)
             {
                 result += numberMatrix[0][Int32.Parse(num)];
+            } else if (num.Length == 2)
+            {
+                result += GroupOfThreeHandler(num);
             }
 
             return result;
@@ -64,25 +67,33 @@ namespace Domain
             string result = "";
             var arr = num.ToCharArray();
 
-            for (int i = 0; i < arr.Length; i++)
+            for (int i = arr.Length - 1; i > 0; i--)
             {
+                int val = Int32.Parse(arr[i].ToString());
                 switch (i)
                 {
-                    case 0:
-                        result = numberMatrix[0][Int32.Parse(num)] + " " + numberMatrix[2][0];
+                    case 2: // hundreds
+                        if (val != 0)
+                        {
+                            result = numberMatrix[0][val] + " " + numberMatrix[3][0];
+                        }
                         break;
-                    case 1:
-                        int val = Int32.Parse(num) - 2; // twenty--2--is at position 0
+
+                    case 1: // --ty's or --teen's
+                        val = val - 2; // twenty--2--is at position 0
                         if (val >= 0) 
                         {
                             result += " " + numberMatrix[1][val];
                         }
                         break;
-                    case 2:
-                        result += " " + numberMatrix[0][Int32.Parse(num)];
+
+                    case 0: // singles
+                        result += " " + numberMatrix[0][val];
                         break;
+
                     default:
                         break;
+
                 }
             }
             return result;
