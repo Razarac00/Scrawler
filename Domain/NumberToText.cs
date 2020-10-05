@@ -54,41 +54,57 @@ namespace Domain
             if (num.Length == 1)
             {
                 result += numberMatrix[0][Int32.Parse(num)];
-            } else if (num.Length == 2)
+            } else if (num.Length <= 3)
             {
                 result += GroupOfThreeHandler(num);
             }
 
+
             return result;
         }
 
-        private string GroupOfThreeHandler(string num)
+        private string GroupOfThreeHandler(string num) 
         {
             string result = "";
-            var arr = num.ToCharArray();
+            var arr = num.ToCharArray(); // [4, 2] [0,1]
+            Array.Reverse(arr); // [2, 4]
 
-            for (int i = arr.Length - 1; i > 0; i--)
+            for (int i = arr.Length - 1; i >= 0; i--)
             {
                 int val = Int32.Parse(arr[i].ToString());
                 switch (i)
                 {
+                    case 0: // singles
+                        if (val != 0)
+                        {
+                            result += " ";
+                        }
+                        result += numberMatrix[0][val];
+                        break;
+
+                    case 1: // --ty's or --teen's
+                        if (val == 1)
+                        {
+                            // teens
+                            val = Int32.Parse(arr[i - 1].ToString());
+                            result += numberMatrix[1][val];
+                            return result;
+                        } 
+                        else
+                        {
+                            val = val - 2; // twenty--2--is at position 0
+                            if (val >= 0) 
+                            {
+                                result += numberMatrix[2][val];
+                            }
+                        }
+                        break;
+
                     case 2: // hundreds
                         if (val != 0)
                         {
                             result = numberMatrix[0][val] + " " + numberMatrix[3][0];
                         }
-                        break;
-
-                    case 1: // --ty's or --teen's
-                        val = val - 2; // twenty--2--is at position 0
-                        if (val >= 0) 
-                        {
-                            result += " " + numberMatrix[1][val];
-                        }
-                        break;
-
-                    case 0: // singles
-                        result += " " + numberMatrix[0][val];
                         break;
 
                     default:
