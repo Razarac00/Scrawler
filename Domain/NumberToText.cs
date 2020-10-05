@@ -54,13 +54,35 @@ namespace Domain
             if (num.Length == 1)
             {
                 result += numberMatrix[0][Int32.Parse(num)];
-            } else if (num.Length <= 3)
+            } 
+            else if (num.Length <= 3)
             {
                 result += GroupOfThreeHandler(num);
+            } 
+            else
+            {
+                num = String.Format("{0:#,###0}", Int64.Parse(num)); // forcefully add commas every third digit
+                string[] splits = num.Split(','); // 123,456 -> [123, 456]
+                int power = splits.Length - 1;
+
+                for (int i = 0; i < splits.Length; i++)
+                {
+                    if (power > 0)
+                    {
+                        result += GroupOfThreeHandler(splits[i]) + " " + numberMatrix[3][power] + " ";
+                        power--;
+                    }
+                    else
+                    {
+                        result = result.Trim() + " " + GroupOfThreeHandler(splits[i]).Trim();
+                    }
+
+                }
+
             }
 
 
-            return result;
+            return result.Trim();
         }
 
         private string GroupOfThreeHandler(string num) 
@@ -77,8 +99,8 @@ namespace Domain
                     case 0: // singles
                         if (val != 0)
                         {
-                            result += " ";
-                            result += numberMatrix[0][val];
+                            result = result.Trim();
+                            result += " " + numberMatrix[0][val];
                         }
                         break;
 

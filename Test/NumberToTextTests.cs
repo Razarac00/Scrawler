@@ -111,5 +111,80 @@ namespace Test
             Assert.Equal(expected, actual);
         }
 
+        [Fact]
+        public void CanHandleThousands()
+        {
+            // arrange
+            string actual;
+            var test = new NumberToText();
+
+            // act
+            actual = test.Convert("6001");
+            var expected = "six thousand one";
+
+            // assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void CanHandleThousandsWithComma()
+        {
+            // arrange
+            string actual;
+            var test = new NumberToText();
+
+            // act
+            actual = test.Convert("1,337");
+            var expected = "one thousand three hundred thirty seven";
+
+            // assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void CanHandleBigThousands()
+        {
+            // arrange
+            string actual;
+            var test = new NumberToText();
+
+            // act
+            actual = test.Convert("696,969");
+            var expected = "six hundred ninety six thousand nine hundred sixty nine";
+
+            // assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void CanHandleMillions()
+        {
+            // arrange
+            string actual;
+            var test = new NumberToText();
+
+            // act
+            actual = test.Convert("12,696,969");
+            var expected = "twelve million six hundred ninety six thousand nine hundred sixty nine";
+
+            // assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void CanHandleBillionsInDebt()
+        {
+            // arrange
+            string actual;
+            var test = new NumberToText();
+
+            // act
+            actual = test.Convert("-88,312,696,969");
+            var expected = "negative eighty eight billion three hundred twelve million six hundred ninety six thousand nine hundred sixty nine";
+
+            // assert
+            Assert.Equal(expected, actual);
+        }
+
     }
 }
