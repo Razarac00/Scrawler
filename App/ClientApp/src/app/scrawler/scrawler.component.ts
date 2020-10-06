@@ -1,11 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-    selector: 'app-scrawler',
-    templateUrl: './scrawler.component.html'
-  })
-  export class ScrawlerComponent {
-      constructor(parameters) {
-          
-      }
+  selector: 'app-scrawler',
+  templateUrl: './scrawler.component.html',
+  styleUrls: ['./scrawler.component.css']
+})
+export class ScrawlerComponent implements OnInit {
+
+  constructor() { }
+
+  ngOnInit() {
   }
+
+}
