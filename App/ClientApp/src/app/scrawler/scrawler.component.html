@@ -5,10 +5,9 @@
     <form action="/form/submit" method="GET">
         <textarea rows="5" cols="60" name="text" spellcheck="true" placeholder="Type a number (e.g., 2020)"></textarea>
         <br/>
-        <input type="submit" value="submit"/>
+        <input type="submit"  (click)="submission()" value="submit"/>
     </form>
 
-    <p *ngIf="!returnOutput"><em>Loading...</em></p>
-    <p *ngIf="returnOutput"> {{ returnOutput }} </p>
+    <p aria-live="polite"> {{ returnOutput }} </p>
 </div>
 

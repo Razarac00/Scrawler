@@ -10,16 +10,17 @@ export class ScrawlerComponent { //implements OnInit {
 
     public returnOutput: string;
 
-    constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) 
+    constructor() 
     { 
-        http.get<string>(baseUrl + 'scrawler').subscribe(result => {
-            this.returnOutput = result;
-          }, error => console.error(error));
     }
 
     // ngOnInit() {
     // }
-
-
+    public submission(http: HttpClient, @Inject('BASE_URL') baseUrl: string)
+    {
+        http.get<string>(baseUrl + 'scrawler').subscribe(result => {
+            this.returnOutput = result;
+          }, error => console.error(error));
+    }
 
 }
