@@ -1,15 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, Inject, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-scrawler',
   templateUrl: './scrawler.component.html',
   styleUrls: ['./scrawler.component.css']
 })
-export class ScrawlerComponent implements OnInit {
+export class ScrawlerComponent { //implements OnInit {
 
-  constructor() { }
+    public returnOutput: string;
 
-  ngOnInit() {
-  }
+    constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) 
+    { 
+        http.get<string>(baseUrl + 'scrawler').subscribe(result => {
+            this.returnOutput = result;
+          }, error => console.error(error));
+    }
+
+    // ngOnInit() {
+    // }
+
+
 
 }

@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 
 namespace App.Controllers
 {
-    // [ApiController]
+    [ApiController]
     [Route("[controller]")]
     public class ScrawlerController : ControllerBase
     {
@@ -19,7 +19,7 @@ namespace App.Controllers
         [HttpGet]
         public string Get()
         {
-            return "";
+            return "test";
         }
 
         [HttpPost]
