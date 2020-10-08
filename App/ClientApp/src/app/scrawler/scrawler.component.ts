@@ -9,18 +9,21 @@ import { Component, Inject, OnInit } from '@angular/core';
 export class ScrawlerComponent { //implements OnInit {
 
     public returnOutput: string;
+    private readonly baseUrl: string;
 
-    constructor() 
+    constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) 
     { 
+        baseUrl = this.baseUrl;
     }
 
     // ngOnInit() {
     // }
-    public submission(http: HttpClient, @Inject('BASE_URL') baseUrl: string)
+    public submission()
     {
-        http.get<string>(baseUrl + 'scrawler').subscribe(result => {
-            this.returnOutput = result;
-          }, error => console.error(error));
+        // this.http.get<string>(this.baseUrl + 'scrawler').subscribe(result => {
+        //     this.returnOutput = result;
+        //   }, error => console.error(error));
+        this.returnOutput = document.getElementById("inputArea").nodeValue;
     }
 
 }

@@ -3,9 +3,10 @@
     <p>scrawler works!</p>
 
     <form action="/form/submit" method="GET">
-        <textarea rows="5" cols="60" name="text" spellcheck="true" placeholder="Type a number (e.g., 2020)"></textarea>
+        <textarea id="inputArea" rows="5" cols="60" name="text" spellcheck="true" placeholder="Type a number (e.g., 2020)"></textarea>
         <br/>
-        <input type="submit"  (click)="submission()" value="submit"/>
+        <!-- <input type="submit"  (click)="submission()" value="submit"/> -->
+        <button class="btn btn-primary" (click)="submission()">Submit</button>
     </form>
 
     <p aria-live="polite"> {{ returnOutput }} </p>
