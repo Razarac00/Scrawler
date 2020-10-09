@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
+import { Form, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-scrawler',
@@ -8,22 +9,22 @@ import { Component, Inject, OnInit } from '@angular/core';
 })
 export class ScrawlerComponent { //implements OnInit {
 
-    public returnOutput: string;
-    private readonly baseUrl: string;
+    public returnOutput = new FormControl('');
+    // private readonly baseUrl: string;
 
-    constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) 
-    { 
-        baseUrl = this.baseUrl;
-    }
+    // constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) 
+    // { 
+    //     baseUrl = this.baseUrl;
+    // }
+    constructor() {}
 
     // ngOnInit() {
     // }
-    public submission()
-    {
+    // public submission()
+    // {
         // this.http.get<string>(this.baseUrl + 'scrawler').subscribe(result => {
         //     this.returnOutput = result;
         //   }, error => console.error(error));
-        this.returnOutput = document.getElementById("inputArea").nodeValue;
-    }
+    // }
 
 }

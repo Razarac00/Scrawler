@@ -2,13 +2,11 @@
     <h1>Scrawler</h1>
     <p>scrawler works!</p>
 
-    <form action="/form/submit" method="GET">
-        <textarea id="inputArea" rows="5" cols="60" name="text" spellcheck="true" placeholder="Type a number (e.g., 2020)"></textarea>
-        <br/>
-        <!-- <input type="submit"  (click)="submission()" value="submit"/> -->
-        <button class="btn btn-primary" (click)="submission()">Submit</button>
-    </form>
+    <label>
+        Type a number (e.g., 2020)
+        <input type="text" spellcheck="true" [formControl]="returnOutput">
+    </label>
 
-    <p aria-live="polite"> {{ returnOutput }} </p>
+    <p> {{ returnOutput.value }} </p>
 </div>
 
