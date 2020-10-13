@@ -8,20 +8,26 @@ import { HttpClient } from '@angular/common/http';
 export class ScrawlService {
 
     private inputString: string;
+    private basePath: string;
 
     public scrawledText : ScrawlText;
 
-    constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-      http.get<ScrawlText>(baseUrl + 'numtotextservice').subscribe(result => {
-        this.scrawledText = result;
-      }, error => console.error(error));
+    constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+        this.basePath = baseUrl;
+        this.http.get<ScrawlText>(this.basePath + 'numtotextservice').subscribe(result => {
+            this.scrawledText = result;
+          }, error => console.error(error));
     }
 
     public getInput() { 
-        return this.inputString; 
+        return this.inputString + " " + this.scrawledText.rebuiltString; 
     }
 
-    public setInput(fromForm: string) { 
+    public setInput(fromForm: string) {
+        this.scrawledText.originalString = fromForm;
+        this.http.post<ScrawlText>(this.basePath + 'numtotextservice', this.scrawledText).subscribe(result => {
+            this.scrawledText = result;
+        }); 
         this.inputString = fromForm; 
     }
 }

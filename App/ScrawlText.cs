@@ -7,5 +7,6 @@ namespace App
         public string originalString { get; set; }
 
         public string rebuiltString { get; set; }
+
     }
 }

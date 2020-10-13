@@ -13,6 +13,8 @@ namespace App.Controllers
     public class NumToTextServiceController : ControllerBase
     {
         private NumberToText numberToText = new NumberToText();
+
+        private ScrawlText st = new ScrawlText();
         public NumToTextServiceController() 
         {
 
@@ -21,17 +23,42 @@ namespace App.Controllers
         [HttpGet]
         public ScrawlText Get()
         {
-            ScrawlText st = new ScrawlText();
-            st.originalString = "2020";
-            st.rebuiltString = numberToText.Convert(st.originalString);
+            if (st.originalString == null)
+            {
+                st.originalString = "2020";
+                st.rebuiltString = numberToText.Convert(st.originalString);
+            } 
+            else
+            {
+                st.rebuiltString = RebuildFromOrigin();    
+            }
             return st;
         }
 
-        // [HttpPost]
-        // public void Post(string formInput) 
-        // {
-            
-        // }
+        [HttpPost]
+        public ScrawlText Post(ScrawlText formInput) 
+        {
+            st.originalString = formInput.originalString;
+            st.rebuiltString = RebuildFromOrigin(); 
+            return st; 
+        }
+
+        private string RebuildFromOrigin()
+        {
+            string result = "";
+            string[] origin = st.originalString.Split();
+            long value;
+            for (int i = 0; i < origin.Length; i++)
+            {
+                string word = origin[i];
+                if (Int64.TryParse(word, out value))
+                {
+                    origin[i] = numberToText.Convert(word);
+                }
+            }
+            result = origin.ToString();
+            return result;
+        }
 
     }
 }
