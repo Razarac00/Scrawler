@@ -20,14 +20,12 @@ export class ScrawlService {
     }
 
     public getInput() { 
-        return this.inputString + " " + this.scrawledText.rebuiltString; 
+        return this.inputString + " " + this.scrawledText.rebuiltString + " " + this.scrawledText.originalString; 
     }
 
     public setInput(fromForm: string) {
         this.scrawledText.originalString = fromForm;
-        this.http.post<ScrawlText>(this.basePath + 'numtotextservice', this.scrawledText).subscribe(result => {
-            this.scrawledText = result;
-        }); 
+        this.http.post<ScrawlText>(this.basePath + 'numtotextservice', this.scrawledText).subscribe();
         this.inputString = fromForm; 
     }
 }
