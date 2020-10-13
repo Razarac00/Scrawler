@@ -18,11 +18,14 @@ namespace App.Controllers
 
         }
 
-        // [HttpGet]
-        // public string Get()
-        // {
-        //     return "test";
-        // }
+        [HttpGet]
+        public ScrawlText Get()
+        {
+            ScrawlText st = new ScrawlText();
+            st.originalString = "2020";
+            st.rebuiltString = numberToText.Convert(st.originalString);
+            return st;
+        }
 
         // [HttpPost]
         // public void Post(string formInput) 
