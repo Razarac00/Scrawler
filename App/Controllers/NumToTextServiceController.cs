@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Domain;
 
 namespace App.Controllers
 {
@@ -11,6 +12,7 @@ namespace App.Controllers
     [Route("[controller]")]
     public class NumToTextServiceController : ControllerBase
     {
+        private NumberToText numberToText = new NumberToText();
         public NumToTextServiceController() 
         {
 

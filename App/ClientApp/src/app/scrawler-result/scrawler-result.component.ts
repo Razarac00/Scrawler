@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ScrawlService } from "../scrawler/scrawl.service";
 
 @Component({
   selector: 'app-scrawler-result',
@@ -9,13 +10,11 @@ export class ScrawlerResultComponent implements OnInit {
 
     public returnResult: string;
 
-    constructor() { }
-
-    ngOnInit() {
+    constructor(ss: ScrawlService) { 
+        this.returnResult = ss.getInput();
     }
 
-    receiveResult($event) {
-        this.returnResult = $event;
+    ngOnInit() {
     }
 
 }
