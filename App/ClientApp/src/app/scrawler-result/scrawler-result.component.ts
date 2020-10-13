@@ -10,9 +10,11 @@ import { ScrawlService } from "../scrawler/scrawl.service";
 export class ScrawlerResultComponent implements OnInit {
 
     public returnResult: string;
+    public rebuiltResult: string;
 
     constructor(ss: ScrawlService, private router: Router) { 
         this.returnResult = ss.getInput();
+        this.rebuiltResult = ss.scrawledText.rebuiltString;
     }
 
     ngOnInit() {
