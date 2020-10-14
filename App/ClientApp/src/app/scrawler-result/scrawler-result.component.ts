@@ -14,7 +14,7 @@ export class ScrawlerResultComponent implements OnInit {
 
     constructor(ss: ScrawlService, private router: Router) { 
         this.returnResult = ss.getInput();
-        this.rebuiltResult = ss.scrawledText.rebuiltString;
+        this.rebuiltResult = ss.scrawledText.RebuiltString;
     }
 
     ngOnInit() {
