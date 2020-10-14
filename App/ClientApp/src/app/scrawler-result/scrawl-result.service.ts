@@ -1,12 +1,23 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { Scrawltext } from "../interfaces/scrawltext";
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ScrawlResultService {
+    private basePath: string;
 
-    public scrawltext: Scrawltext;
+    public scrawledText: Scrawltext;
 
-    constructor() { }
+    constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) { 
+        this.basePath = baseUrl;
+        this.http.get<Scrawltext>(this.basePath + 'numtotextservice').subscribe(result => {
+            this.scrawledText = result;
+          }, error => console.error(error));
+    }
+
+    public getInput() { 
+        return this.scrawledText.RebuiltString + " " + this.scrawledText.OriginalString; 
+    }
 }

@@ -15,7 +15,7 @@ namespace App
             {
                 return RebuildFromOrigin();
             } 
-            private set 
+            set 
             {
                 _rebuiltString = value;
             }     
@@ -34,7 +34,7 @@ namespace App
                     origin[i] = numberToText.Convert(word);
                 }
             }
-            result = origin.ToString();
+            result = string.Join(" ", origin);
             return result;
         }
 

@@ -30,6 +30,7 @@ namespace App.Controllers
         public ScrawlText Post(ScrawlText formInput) 
         {
             st.OriginalString = formInput.OriginalString; 
+            st.RebuiltString = st.RebuiltString;
             return st; 
         }
 

@@ -26,7 +26,9 @@ export class ScrawlService {
 
     public setInput(fromForm: string) {
         this.scrawledText.OriginalString = fromForm;
-        this.http.post<Scrawltext>(this.basePath + 'numtotextservice', this.scrawledText);
+        this.http.post<Scrawltext>(this.basePath + 'numtotextservice', this.scrawledText).subscribe(result => {
+            this.scrawledText = result;
+          }, error => console.error(error));
         this.inputString = fromForm; 
     }
 }
