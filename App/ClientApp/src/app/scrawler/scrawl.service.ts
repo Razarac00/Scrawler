@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
-import { from } from 'rxjs';
+import { from, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Scrawltext } from "../interfaces/scrawltext";
 
@@ -12,6 +12,7 @@ export class ScrawlService {
     private basePath: string;
 
     public scrawledText : Scrawltext;
+    public st$ : Observable<Scrawltext>;
 
     constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
         this.basePath = baseUrl;
@@ -21,14 +22,18 @@ export class ScrawlService {
     }
 
     public getInput() { 
+        this.st$.subscribe(result => {
+            this.scrawledText = result;
+        });
         return this.inputString + " " + this.scrawledText.RebuiltString + " " + this.scrawledText.OriginalString; 
     }
 
     public setInput(fromForm: string) {
         this.scrawledText.OriginalString = fromForm;
-        this.http.post<Scrawltext>(this.basePath + 'numtotextservice', this.scrawledText).subscribe(result => {
+        this.st$ = this.http.post<Scrawltext>(this.basePath + 'numtotextservice', this.scrawledText);
+        this.st$.forEach(result => {
             this.scrawledText = result;
-          }, error => console.error(error));
+        })
         this.inputString = fromForm; 
     }
 }
