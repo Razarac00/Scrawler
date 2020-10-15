@@ -12,28 +12,33 @@ export class ScrawlService {
     private basePath: string;
 
     public scrawledText : Scrawltext;
-    public st$ : Observable<Scrawltext>;
+    public outputString: string;
 
     constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
         this.basePath = baseUrl;
-        this.http.get<Scrawltext>(this.basePath + 'numtotextservice').subscribe(result => {
+        this.http.get<Scrawltext>(this.basePath + 'numtotextservice').toPromise().then(result => {
             this.scrawledText = result;
           }, error => console.error(error));
     }
 
     public getInput() { 
-        this.st$.subscribe(result => {
-            this.scrawledText = result;
-        });
+        // this.http.get<Scrawltext>(this.basePath + 'numtotextservice').toPromise().then(result => 
+        //     this.scrawledText = result);
         return this.inputString + " " + this.scrawledText.RebuiltString + " " + this.scrawledText.OriginalString; 
     }
 
     public setInput(fromForm: string) {
         this.scrawledText.OriginalString = fromForm;
-        this.st$ = this.http.post<Scrawltext>(this.basePath + 'numtotextservice', this.scrawledText);
-        this.st$.forEach(result => {
-            this.scrawledText = result;
-        })
         this.inputString = fromForm; 
+
+        this.http.post<Scrawltext>(this.basePath + 'numtotextservice', this.scrawledText).subscribe(res => {
+            this.scrawledText = res;
+            this.outputString = res.RebuiltString;
+        }); //toPromise().then
+
+        return this.http.post<Scrawltext>(this.basePath + 'numtotextservice', this.scrawledText);
+        
     }
+
+
 }
