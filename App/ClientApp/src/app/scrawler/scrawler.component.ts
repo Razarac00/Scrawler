@@ -29,18 +29,29 @@ export class ScrawlerComponent implements OnInit {
         if (returnOutput != null) {
             returnOutput.reset;
         }
+        console.log("Scrawled text on refresh: " + this.ss.scrawledText);
+        this.ss.scrawledText = {
+            OriginalString: "",
+            RebuiltString: ""
+        }
     }
 
-    public submission()
+    public async submission()
     {
+        console.log("submission " + this.returnOutput.value);
         this.insertRecord(this.returnOutput);
         // this.ss.setInput(this.returnOutput.value);
         // this.router.navigateByUrl('scrawler-result');
     }
 
-    insertRecord(returnOutput: FormControl) {
-        this.ss.setInput(returnOutput.value).subscribe(res => {
-            this.refreshComponent(returnOutput);
+    async insertRecord(returnOutput: FormControl) {
+        console.log("is the return output even here " + this.returnOutput.value);
+        let finalr = await this.ss.setInput(this.returnOutput.value).toPromise();
+        console.log("Please answer: " + finalr.OriginalString);
+        await this.ss.setInput(this.returnOutput.value).toPromise().then(res => {
+            console.log("insertRecord sub " + res.OriginalString + " and ro: " + this.returnOutput);
+            console.log("from the form while inserting: " + this.returnOutput.value);
+            this.refreshComponent(this.returnOutput);
             this.ss.getInput();
         }, err => { console.error(err); }
         );
