@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Form, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ScrawlService } from "./scrawl.service";
@@ -11,38 +11,39 @@ import { Scrawltext } from '../interfaces/scrawltext';
   templateUrl: './scrawler.component.html',
   styleUrls: ['./scrawler.component.css']
 })
-export class ScrawlerComponent { 
+export class ScrawlerComponent implements OnInit { 
 
     public returnOutput = new FormControl('');
     public orig: string;
     public rebu: string;
-    public st$: Observable<Scrawltext>;
 
     constructor(private ss: ScrawlService, private router: Router) 
     { 
     }
 
-    public async submission()
+    ngOnInit() {
+        this.refreshComponent();
+    }
+
+    refreshComponent(returnOutput?: FormControl) {
+        if (returnOutput != null) {
+            returnOutput.reset;
+        }
+    }
+
+    public submission()
     {
-        const _this = this;
-        this.st$ = this.ss.setInput(this.returnOutput.value);
-        console.log(this.st$);
-        await this.st$.toPromise().then(res => {
-            console.log(res);
-            this.rebu = res.RebuiltString;
-            this.applyIt(res.RebuiltString);
-            _this.rebu = res.RebuiltString;
-            console.log(_this.rebu);
-        });
-        this.orig = this.ss.scrawledText.OriginalString;
-        console.log(_this.rebu);
-        // this.rebu = this.ss.scrawledText.RebuiltString;
+        this.insertRecord(this.returnOutput);
+        // this.ss.setInput(this.returnOutput.value);
         // this.router.navigateByUrl('scrawler-result');
     }
 
-    applyIt(s: string) {
-        this.rebu = s;
-        console.log("made it here " + s);
+    insertRecord(returnOutput: FormControl) {
+        this.ss.setInput(returnOutput.value).subscribe(res => {
+            this.refreshComponent(returnOutput);
+            this.ss.getInput();
+        }, err => { console.error(err); }
+        );
     }
     
 

@@ -1,5 +1,5 @@
 <marquee behavior="scroll" direction="left" scrollamount="15" id="wheeler"> {{ returnResult }} </marquee>
-<p *ngIf="rebuiltResult"><em>{{ rebuiltResult }}</em></p>
+<p *ngIf="rebuiltResult"><em>{{ rebuiltResult | async }}</em></p>
 <p>
     <button (click)="goBack()">Do it Again</button>
 </p>
