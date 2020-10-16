@@ -23,6 +23,7 @@ namespace App.Controllers
         [HttpGet]
         public ScrawlText Get()
         {
+            Console.WriteLine("Get has " + st.RebuiltString);
             return st;
         }
 
@@ -31,6 +32,7 @@ namespace App.Controllers
         {
             st.OriginalString = formInput.OriginalString; 
             st.RebuiltString = st.RebuiltString;
+            Console.WriteLine("Can confirm post has " + st.RebuiltString);
             return st; 
         }
 

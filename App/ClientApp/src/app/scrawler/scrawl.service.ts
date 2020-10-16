@@ -26,9 +26,13 @@ export class ScrawlService {
 
     public setInput(fromForm: string) {
         this.scrawledText.OriginalString = fromForm;
-        this.http.post<Scrawltext>(this.basePath + 'numtotextservice', this.scrawledText).subscribe(result => {
-            this.scrawledText = result;
-          }, error => console.error(error));
+        console.log("Set Input form has " + fromForm);
+        // this.http.post<Scrawltext>(this.basePath + 'numtotextservice', this.scrawledText).toPromise().then(result => {
+        //     console.log("setInput call result: " + result.OriginalString + ", " + result.RebuiltString);
+        //     this.scrawledText = result;
+        //   }, error => console.error(error));
         this.inputString = fromForm; 
+
+        return this.http.post<Scrawltext>(this.basePath + 'numtotextservice', this.scrawledText).toPromise();
     }
 }

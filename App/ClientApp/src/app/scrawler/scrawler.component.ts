@@ -19,8 +19,16 @@ export class ScrawlerComponent {
 
     public submission()
     {
-        this.ss.setInput(this.returnOutput.value);
-        this.router.navigateByUrl('scrawler-result');
+        this.ss.setInput(this.returnOutput.value).then(res => {
+            console.log("Consumed on submission: " + res.OriginalString);
+
+            this.router.navigateByUrl('scrawler-result');
+        }).catch(err => {
+            console.log("why are we here? Just to suffer?"); 
+            console.error(err); 
+        }
+        );
+        
     }
     
 
