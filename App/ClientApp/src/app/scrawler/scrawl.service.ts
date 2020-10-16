@@ -12,6 +12,7 @@ export class ScrawlService {
     private basePath: string;
 
     public scrawledText : Scrawltext;
+    public finalOutput : string;
 
     constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
         this.basePath = baseUrl;
@@ -21,18 +22,15 @@ export class ScrawlService {
     }
 
     public getInput() { 
-        return this.inputString + " " + this.scrawledText.RebuiltString + " " + this.scrawledText.OriginalString; 
+        return this.finalOutput; 
     }
 
     public setInput(fromForm: string) {
-        this.scrawledText.OriginalString = fromForm;
+        this.scrawledText.originalString = fromForm;
         console.log("Set Input form has " + fromForm);
-        // this.http.post<Scrawltext>(this.basePath + 'numtotextservice', this.scrawledText).toPromise().then(result => {
-        //     console.log("setInput call result: " + result.OriginalString + ", " + result.RebuiltString);
-        //     this.scrawledText = result;
-        //   }, error => console.error(error));
+
         this.inputString = fromForm; 
 
-        return this.http.post<Scrawltext>(this.basePath + 'numtotextservice', this.scrawledText).toPromise();
+        return this.http.post<Scrawltext>(this.basePath + 'numtotextservice', this.scrawledText);
     }
 }

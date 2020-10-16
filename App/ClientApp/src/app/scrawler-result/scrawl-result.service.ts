@@ -18,6 +18,6 @@ export class ScrawlResultService {
     }
 
     public getInput() { 
-        return this.scrawledText.RebuiltString + " " + this.scrawledText.OriginalString; 
+        return this.scrawledText.rebuiltString + " " + this.scrawledText.originalString; 
     }
 }

@@ -13,12 +13,13 @@ export class ScrawlerResultComponent implements OnInit {
     public returnResult: string;
     public rebuiltResult: string;
 
-    constructor(srs: ScrawlService, private router: Router) { 
-        this.returnResult = srs.getInput();
-        this.rebuiltResult = srs.scrawledText.RebuiltString;
+    constructor(private srs: ScrawlService, private router: Router) { 
+
     }
 
     ngOnInit() {
+        this.returnResult = this.srs.getInput();
+        this.rebuiltResult = this.srs.finalOutput;
     }
 
     public goBack()

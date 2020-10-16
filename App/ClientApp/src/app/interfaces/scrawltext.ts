@@ -1,4 +1,4 @@
 export interface Scrawltext {
-    OriginalString: string;
-    RebuiltString: string;
+    originalString: string;
+    rebuiltString: string;
 }
