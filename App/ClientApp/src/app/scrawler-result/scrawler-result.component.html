@@ -1,5 +1,5 @@
-<marquee behavior="scroll" direction="left" scrollamount="15" id="wheeler"> {{ rebuiltResult }} </marquee>
-<p *ngIf="rebuiltResult"><em>{{ rebuiltResult }}</em></p>
+<marquee behavior="scroll" direction="left" scrollamount="15" id="wheeler"><span> {{ rebuiltResult }} </span></marquee>
+<p *ngIf="rebuiltResult" id="hiddenText"><em>{{ rebuiltResult }}</em></p>
 <p>
     <button (click)="goBack()">Do it Again</button>
 </p>

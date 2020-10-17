@@ -1,5 +1,17 @@
 #wheeler {
     color: aliceblue;
     font-size: 10vw;
+    white-space: nowrap;
+    overflow: visible;
     background-image: linear-gradient(black, rgb(0, 0, 83));
+}
+
+#hiddenText {
+    opacity: 0.3;
+    transition-property: opacity;
+    transition-duration: 300ms;
+}
+
+#hiddenText:focus-within, #hiddenText:hover {
+    opacity: 1.0;
 }

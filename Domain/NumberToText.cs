@@ -7,6 +7,8 @@ namespace Domain
     {
         public List<string[]> numberMatrix { get; private set; }
 
+        private readonly string ERROR_MESSAGE = "Error: Your number is way too long you freak LOL";
+
         private string[] single_digits = new string[]
         { 
             "zero", "one", "two", 
@@ -73,6 +75,10 @@ namespace Domain
 
                         if (nextSet != "")
                         {
+                            if (power >= numberMatrix[3].Length) 
+                            {
+                                return ERROR_MESSAGE;
+                            }
                             result += nextSet + " " + numberMatrix[3][power] + " ";
                         }
                         power--;
