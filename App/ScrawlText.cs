@@ -28,7 +28,7 @@ namespace App
             long value;
             for (int i = 0; i < origin.Length; i++)
             {
-                string word = origin[i];
+                string word = origin[i].Replace(",", "");
                 if (Int64.TryParse(word, out value))
                 {
                     origin[i] = numberToText.Convert(word);

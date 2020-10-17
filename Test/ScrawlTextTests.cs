@@ -83,5 +83,21 @@ namespace Test
             // assert
             Assert.Equal(expected, actual);
         }
+
+        [Fact]
+        public void RebuiltStringHandlesCommaDigits()
+        {
+            // arrange
+            string actual;
+            var test = new ScrawlText();
+
+            // act
+            test.OriginalString = "3,123,000";
+            actual = test.RebuiltString;
+            var expected = "three million one hundred twenty three thousand";
+
+            // assert
+            Assert.Equal(expected, actual);
+        }
     }
 }
